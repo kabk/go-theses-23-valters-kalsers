@@ -1,31 +1,17 @@
 @charset "UTF-8";
 
 
-
-/* @FONT FACE (enable the use of 'custom fonts' inside your document) */
-
-@font-face {
-    font-family: 'PicNic-Regular';
-    src: url('/..fonts/PicNic/PicNic-Regular.eot');
-    src: url('../fonts/PicNic/PicNic-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/PicNic/PicNic-Regular.woff2') format('woff2'),
-        url('../fonts/PicNic/PicNic-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-
 /* VARIABLES */
 
 :root {
   /* Color settings */
-  --color-background: rgba(231, 255, 225, 0.1);
-  --color-text: rgb(51, 162, 24);
+  --color-background: rgba(255, 255, 255, 1);
+  --color-line: rgb(186, 255, 167);
+  --color-text: rgb(10, 29, 6);
   --color-text-link: rgba(65, 185, 35, 1);
   --color-text-link-hover: rgba(65, 185, 35, 0.4);
   /* Font settings */
-  --font-family: 'Helvetica', 'Arial', sans-serif;
+  --font-family: 'Space Grotesk', 'Helvetica', 'Arial', sans-serif;
   /* Margins settings */
   --margin: 2.5rem;
 }
@@ -35,44 +21,22 @@
 /* GENERAL STYLES */
 
 body {
-  position:relative;
-  background-color: var(--color-background);
-  font: var(--font-size) var(--font-family);
-  color: var(--color-text);
-  text-transform: uppercase;
-  width:100%;
-  height:auto;
-  overflow-y:auto;
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle, #41B923 1px, rgba(0, 255, 0, 0) 1px);
 }
 
 a {
-  color: var(--color-text-link);
   text-decoration: none;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-
 }
 
-a:hover {
-  color: var(--color-text-link-hover);
+h1 {
+  margin: 10px;
+  padding: 15px;
 }
 
-a:focus-visible {
-  color: var(--color-text-link-hover);
-}
+h2 {}
 
-h1{
-  /* h1 style */
-}
-
-h2{
-  font-size: 16px;
-  line-height: 18px;
-  font-weight: 400;
-  margin: 0;
-}
-
+/*
 div:first-of-type, p:first-of-type {
   height: 240px;
 }
@@ -80,40 +44,46 @@ div:first-of-type, p:first-of-type {
 div:not(:first-of-type), p:not(:first-of-type) {
   border-top: 1px solid var(--color-text);
 }
-
-h3{
+*/
+h3 {
   /* h3 style */
 }
 
-h4, h5, h6{
+h4,
+h5,
+h6 {
   /* h4-h5-h6 style */
 }
 
-p {
-  font-family: 'PicNic-Regular';
-  margin: 0;
-  padding-bottom: 80px;
-  border-left: 1px solid var(--color-text);
-}
 
-ol, ul{
+ol,
+ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  margin: 20px;
+  padding: 30px;
+  font-size: 14px;
+  line-height: 26px;
 }
 
-li:nth-child(odd) {
-  padding: 40px 0 160px 0;
+main p {
+  cursor: default;
 }
 
-li:nth-child(even) {
-  padding-bottom:  160px 0 40px 0 !important;
+main p b {
+  font-weight: normal;
+  font-style: normal;
+  transition: all 0.5s cubic-bezier(0, 1.24, 1, 1);
+  display: inline-block;
+  transform-origin: center 75%;
+  z-index: 1;
+  position: relative;
 }
 
+main p b.grow {
+  filter: url("#filter");
+  transform: scale(4);
+  z-index: 0;
+}
 
 /* PAGE STYLES */
 
@@ -123,39 +93,175 @@ li:nth-child(even) {
 div.page-wrapper {
   /* the element that 'wraps' everything */
   padding-left: var(--margin);
+  padding-top: 80px;
+}
+
+.section-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 /* navigation */
- 
-header{
-  position: absolute;
-  top: 2.5rem;
-  left: 2.5rem;
-  width: calc(100vw - 100px);
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-right: 24px;
+  padding-bottom: 300px;
+}
+
+header .page-title {
+  font-family: 'Times New Roman';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 220px;
+  line-height: 180px;
+  letter-spacing: -0.03em;
+  text-align: right;
+}
+
+header h1 {
+  font-family: 'Times New Roman';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 200px;
+  line-height: 160px;
+  letter-spacing: -0.04em;
+  text-align: right;
 }
 
 
 /* content */
 
-main{
-  display: grid;
-  grid-template-rows: repeat(auto-fit, 1fr);
-  grid-template-columns: 1fr 2fr;
-  border-bottom: 1px solid var(--color-text);
+.left-column {
+  max-width: 280px;
+  width: 100%;
+  position: relative;
 }
 
-.source{
+.right-column {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: repeat(12, 1fr);
+  border: 1px solid var(--color-line);
+  grid-gap: 1px;
+  background-color: var(--color-line);
+}
+
+.content {
+  border-top: 1px solid var(--color-line);
+}
+
+.content .references {
+  position: absolute;
+  top: 300px;
+  right: 20px;
+}
+
+ul.references {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul.references li {
+  width: 25%;
+  max-width: 25%;
+}
+
+.content .right-column {
+  border-top: none;
+}
+
+.nav .right-column {
+  border-bottom: none;
+}
+
+.right-column>.item {
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-background);
+}
+
+.nav .right-column>.item {
+  position: relative;
+}
+
+.content .right-column {
+  position: relative;
+}
+
+.text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: left;
+  z-index: 10;
+}
+
+.nav .text {
+  width: 8rem;
+}
+
+.nav,
+.nav h2 {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  text-transform: uppercase;
+  margin: 0;
+  color: #24c629;
+}
+
+
+.content,
+.content h2,
+.content p {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+  margin: 0;
+  padding: 0;
+}
+
+.references a {
   font-size: 10px;
-  line-height: 11px;
-  width: 150px;
+  line-height: 13px;
+  text-transform: uppercase;
+  color: #24c629;
   display: block;
-  padding-top: 10rem;
-  padding-left: 5rem;
+  padding-bottom: 24px;
+  padding-right: 24px;
 }
 
+.footnote a {
+  color: #24c629;
+  text-decoration: underline;
+}
 
+.content h2 {
+  text-transform: uppercase;
+}
 
+.content .download {
+  font-family: 'Times New Roman';
+  color: #24c629;
+  font-style: italic;
+}
 
+.references-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.references-details {
+  padding-top: 80px;
+  padding-bottom: 130px;
+}
 
 
 /* GENERAL USABILITY */
@@ -195,67 +301,179 @@ main{
 
 /* responsive typeface */
 
-@media (max-width: 298px) { 
-  :root{ --font-size: 15px; } html, body {font: var(--font-size) var(--font-family);} 
+@media (max-width: 298px) {
+  :root {
+    --font-size: 15px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 299px) and (max-width: 339px) { 
-  :root{ --font-size: 16px; } html, body {font: var(--font-size) var(--font-family);} 
+
+@media (min-width: 299px) and (max-width: 339px) {
+  :root {
+    --font-size: 16px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 340px) and (max-width: 439px) { 
-  :root{ --font-size: 17px; } html, body {font: var(--font-size) var(--font-family);} 
+
+@media (min-width: 340px) and (max-width: 439px) {
+  :root {
+    --font-size: 17px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 440px) and (max-width: 599px) { 
-  :root{ --font-size: 18px; } html, body{font: var(--font-size) var(--font-family);}
+
+@media (min-width: 440px) and (max-width: 599px) {
+  :root {
+    --font-size: 18px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 600px) and (max-width: 779px) { 
-  :root{ --font-size: 19px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 600px) and (max-width: 779px) {
+  :root {
+    --font-size: 19px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 780px) and (max-width: 992px) { 
-  :root{ --font-size: 20px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 780px) and (max-width: 992px) {
+  :root {
+    --font-size: 24px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 993px) and (max-width: 1200px) { 
-  :root{ --font-size: 22px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  :root {
+    --font-size: 22px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 1201px) and (max-width: 1319px) { 
-  :root{ --font-size: 24px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 1201px) and (max-width: 1319px) {
+  :root {
+    --font-size: 24px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 1320px) and (max-width: 1619px) { 
-  :root{ --font-size: 26px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 1320px) and (max-width: 1619px) {
+  :root {
+    --font-size: 26px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 1620px) and (max-width: 1879px) { 
-  :root{ --font-size: 28px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 1620px) and (max-width: 1879px) {
+  :root {
+    --font-size: 28px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
-@media (min-width: 1880px) { 
-  :root{ --font-size: 30px; } html, body {font: var(--font-size) var(--font-family);}
+
+@media (min-width: 1880px) {
+  :root {
+    --font-size: 30px;
+  }
+
+  html,
+  body {
+    font: var(--font-size) var(--font-family);
+  }
 }
 
 
 
 /* website media queries */
+@media (max-width: 1620px) {
+  .right-column {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 993px) {
+  .right-column {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .left-column {
+    max-width: 82px;
+  }
+
+  .content p {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .content h2 {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
 
 @media (max-width: 779px) {
 
   /* styles for screen sizes 779px, should covers 'mobile' and 'tablet' */
   /* style this one first and then use the two others to 'override' some styles (exceptions/details) */
-
-  .source{
-    width: 100px;
-    padding-left: 0.5rem;
-    overflow: auto;
-  }
-
-
   /* utilities */
 
-  .desktop{display:none!important;}
-  .mobile{display:block;}
+  .desktop {
+    display: none !important;
+  }
+
+  .mobile {
+    display: block;
+  }
 
 }
 
-
-
-@media (max-width: 339px) {
+@media (max-width: 440px) {
+  .right-column {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
+@media (max-width: 339px) {}
 
 
 
