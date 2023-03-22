@@ -8,9 +8,9 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 	<!-- meta tags, fill them with website meta infos -->
-	<meta name="description" content="Description of your web page" />
-	<meta name="keywords" content="Keyword 1, Keyword 2, Keyword 3, Keyword 4, Keyword 5 ..." />
-	<meta name="author" content="Name of the author/owner of the webpage's content" />
+	<meta name="Stalins Revenge" content="Case of giant hogweed in post-soviet countries" />
+	<meta name="keywords" content="Invasive Species, Statecraft, Desigy systems, USSR" />
+	<meta name="Valters Kalsers" content="Valters Kalsers" />
 
 	<!-- favicons -->
 	<!--
@@ -28,12 +28,12 @@
 
 	<!-- meta properties for social medias, twitter = twitter, og:... = facebook -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Webpage title">
-	<meta name="twitter:description" content="Description of your web page">
+	<meta name="twitter:title" content="Stalins Revenge">
+	<meta name="twitter:description" content="Case of giant hogweed in post-soviet countries">
 	<meta property="twitter:image:src" content="assets/images/imageforsocialmedias.jpg">
-	<meta property="og:title" content="Webpage title" />
-	<meta property="og:url" content="http://www.mywebsite.com/mywebpage" />
-	<meta property="og:description" content="Description of your webpage" />
+	<meta property="og:title" content="Stalins Revenge" />
+	<meta property="og:url" content="https://kabk.github.io/go-theses-23-valters-kalsers" />
+	<meta property="og:description" content="Case of giant hogweed in post-soviet countries" />
 	<meta property="og:image" content="assets/images/imageforsocialmedias.jpg" />
 
 	<!-- website title, visible in the browser window and on link sharing -->
@@ -57,6 +57,7 @@
 
 
 	<!-- webpage content goes here -->
+    <button id="scroll-to-top" class="scroll-to-top">BA<br/>CK</button>
 
 
 
@@ -893,7 +894,7 @@
 					</a>
 				</li>
 				<li>
-					
+
 					<a id="fn-32" href="#fnref-32" aria-describedby="footnote-label">
 						32. Antonova, M., (2020). <br />
 						A Toxic Alien Is Taking Over Russia. New Yor Times.
@@ -1190,23 +1191,37 @@
 
 <script>
 
+    const scrollButton = document.getElementById('scroll-to-top');
+
+    window.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight / 2) {
+        scrollButton.style.display = 'block';
+    } else {
+        scrollButton.style.display = 'none';
+    }
+    });
+
+    scrollButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
 	document.querySelectorAll('#main p').forEach(el => {
 		el.innerHTML = el.innerHTML.replace(/(?<!(<\/?[^>]*|&[^;]*))([^\s<]+)/g, '$1<b>$2</b>')
-					   
+
 
 	});
 
-	
+
 	const elDivs = document.querySelectorAll("#main p b");
-	
+
 	const toggleClassDivs = (evt) => {
 	  evt.target.classList.toggle('grow')
 	};
-	
+
 	elDivs.forEach(el => {
 	  el.addEventListener("mouseenter", toggleClassDivs);
 	});
-	
+
 	elDivs.forEach(el => {
 	  el.addEventListener("touchstart", toggleClassDivs);
 	});
